@@ -1,19 +1,28 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "@emotion/styled";
 import { useScreen } from '../context/ScreenContext'
 
 const Screen = () => {
    const screen = useScreen();
-   const password = '1234'
+   const password = '1234';
+   const [attemps, setAttemps] = useState(0);
 
    useEffect(() => {
       if(screen.numbers.length === 4 ){
          if(screen.numbers === password){
             success();
+            window.location = "http://migers.digital";
             console.log('Pass Correct');
             
          }else {
             clearScreen();
+            setAttemps(attemps + 1);
+
+            if(attemps === 2){
+               screen.setBlock(true)
+               screen.setNumbers('Blocked')
+            }
+
             console.log('Wrong!');
             
          }
@@ -35,6 +44,7 @@ const Screen = () => {
          screen.setNumbers('')
       }, 2000);
    }
+
 
    return <Input type="" disabled maxLength="4" defaultValue={screen.numbers}/>;
 };

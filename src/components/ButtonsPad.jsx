@@ -14,7 +14,7 @@ const ButtonsPad = () => {
    return (
       <div>
          <ButtonsContainer >{ numbersOfButtons.map((numberButton) => (
-            <Button value={numberButton.toString()} key={numberButton.toString()} onClick={ handleClick } >
+            <Button disabled={screen.block} value={numberButton.toString()} key={numberButton.toString()} onClick={ handleClick } >
                {numberButton}
             </Button>
 
