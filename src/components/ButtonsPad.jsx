@@ -7,7 +7,7 @@ const ButtonsPad = () => {
    const screen = useScreen();
    const handleClick = (e) => {
       e.preventDefault();
-      screen.setNumbers(e.target.innerHTML);
+      screen.setNumbers( screen.numbers + e.target.innerHTML );
       
    }
 

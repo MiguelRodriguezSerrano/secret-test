@@ -1,10 +1,18 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import styled from "@emotion/styled";
 import { useScreen } from '../context/ScreenContext'
 
 const Screen = () => {
    const screen = useScreen();
-   return <Input type="" maxLength="4" defaultValue={screen.numbers}/>;
+
+   useEffect(() => {
+      if(screen.numbers.length === 4){
+         console.log('Checked!');
+         
+      }
+
+   }, [screen.numbers])
+   return <Input type="" disabled maxLength="4" defaultValue={screen.numbers}/>;
 };
 
 const Input = styled.input`
