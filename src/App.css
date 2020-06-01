@@ -12,8 +12,19 @@ body {
    background-size: contain;
    background-position: 480px -860px;
    background-repeat: no-repeat;
+   animation: fade 2s ;
 }
 ::selection {
    background: rgb(95, 95, 95);
    color: #fff;
 }
+
+@keyframes fade{
+   0%{
+      opacity: 0;
+   }
+   100%{
+      opacity: 1;
+   }
+}
+

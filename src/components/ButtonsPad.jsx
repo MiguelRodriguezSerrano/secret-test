@@ -9,9 +9,10 @@ const ButtonsPad = () => {
       screen.setNumbers( screen.numbers + e.target.innerHTML );
    }
    useEffect(() => {
-      if(screen.attemps > 2){
+      if(screen.attemps > 3){
          screen.setBlock(true)
          screen.setNumbers('Blocked')
+         screen.setColors('blocked')
       }
    }, [screen.attemps])
 
@@ -49,16 +50,18 @@ const Button = styled.button`
    font-size: 1.8em;
    cursor: pointer;
    user-select: none;
+   color: #666; 
    transition: all 0.5s ease;
    &:hover {
       color: rgba(31, 31, 31, 0.8);
+      background: rgba(161, 37, 219, 0.1);
    }
    &:active {
       background: rgba(31, 31, 31, 0.1);
       color: white;
    }
    &:hover:before {
-      border: 2px solid rgba(31, 31, 31, 0.5);
+      border: 1px inset rgba(161, 37, 219, 0.3);
    }
    &:before {
       content: "";
@@ -69,6 +72,9 @@ const Button = styled.button`
       border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 2.5em;
       transition: all 0.5s ease;
+   }
+   &:focus{
+      outline: none;
    }
 `;
 

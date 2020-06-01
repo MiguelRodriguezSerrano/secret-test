@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
+app.use(cors([{origin: 'localhost:3000'}]));
 
 app.get('/password', function (_req, res) {
   res.json(
