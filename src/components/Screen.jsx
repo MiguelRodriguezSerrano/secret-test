@@ -5,24 +5,18 @@ import { useScreen } from '../context/ScreenContext'
 const Screen = () => {
    const screen = useScreen();
    const password = '1234';
-   const [attemps, setAttemps] = useState(0);
+   
 
    useEffect(() => {
       if(screen.numbers.length === 4 ){
          if(screen.numbers === password){
-            success();
+            clearScreen('Success');
             window.location = "http://migers.digital";
             console.log('Pass Correct');
             
          }else {
-            clearScreen();
-            setAttemps(attemps + 1);
-
-            if(attemps === 2){
-               screen.setBlock(true)
-               screen.setNumbers('Blocked')
-            }
-
+            clearScreen('Wrong');
+            screen.setAttemps(screen.attemps + 1);
             console.log('Wrong!');
             
          }
@@ -30,20 +24,22 @@ const Screen = () => {
       
    }, [screen.numbers]);
 
-   const clearScreen = () => {
-      screen.setNumbers('Wrong')
-
+   const clearScreen = (message) => {;
+      
+      screen.setBlock(true)
+      screen.setNumbers(message)
       setTimeout(() => {
          screen.setNumbers('')
-      }, 2000);
-   }
-   const success = () => {
-      screen.setNumbers('Success')
 
-      setTimeout(() => {
-         screen.setNumbers('')
-      }, 2000);
+         if(screen.attemps < 3) {
+            screen.setBlock(false)
+         }
+         
+         
+      }, 1000);
+         
    }
+      
 
 
    return <Input type="" disabled maxLength="4" defaultValue={screen.numbers}/>;

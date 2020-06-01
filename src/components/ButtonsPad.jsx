@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import {useScreen} from '../context/ScreenContext';
 
@@ -6,10 +6,14 @@ const ButtonsPad = () => {
    const numbersOfButtons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
    const screen = useScreen();
    const handleClick = (e) => {
-      e.preventDefault();
       screen.setNumbers( screen.numbers + e.target.innerHTML );
-      
    }
+   useEffect(() => {
+      if(screen.attemps > 2){
+         screen.setBlock(true)
+         screen.setNumbers('Blocked')
+      }
+   }, [screen.attemps])
 
    return (
       <div>
